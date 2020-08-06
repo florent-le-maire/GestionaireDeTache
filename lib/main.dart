@@ -53,6 +53,25 @@ class _MyHomePageState extends State<MyHomePage> {
     listDeTache.add("Tache1");
     super.initState();
   }
+  createAlertDialog(BuildContext context){
+    return showDialog(context: context,builder:(context){
+      return AlertDialog(
+        title: Text("Etes-vous sûr"),
+        content: Text("Terminer la tâche?"),
+        actions: [
+          MaterialButton(
+            child: Text("Annuler"),
+            onPressed: null
+          ),
+          MaterialButton(
+            child: Text("Terminer"),
+            onPressed: null
+          ),
+        
+        ],
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
           return CheckboxListTile(
             value: _checked[index],
             onChanged: (bool value){
+              if(value == true)
+                createAlertDialog(context);
               setState(() {
                 _checked[index] = value;
               });
